@@ -6,18 +6,23 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		</head>
 		
-	<body bgcolor=#7B92AD text="#000000" onLoad=count_az_h()>
+	<body bgcolor=#7B92AD text="#000000">
 		<div>
 			  Сегодня:  <b>
 			  <script language="JavaScript">
-					 document.write(getToday_Jday(new Date()));                    
+					 var cur_data = new Date(); 			  
+					 document.write(getToday_Jday(cur_data));                    
 			  </script></b>
 			  <br>
 			  Истинное звездное время на текущую дату в Гринвичскую полночь:<b> 
 			  <script language="javascript">
-					 document.write(getStarTime(new Date()));
+					 document.write(getStarTime(cur_data));
 			  </script>
 			  </b>
+		</div>
+
+		<div>
+			<script> document.write(getJDay(cur_data))</script>
 		</div>
 		
 			   

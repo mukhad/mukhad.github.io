@@ -2,10 +2,28 @@
 //Mukhad    30.10.17
 //-----------------------------------------------------------------------------------------------------------------
 function getJDay(thedata){
-    var dd = new Date(1900,0,1);
-    var jd = (thedata - dd)/(24*3600*1000) + 2415020 + 0.5 + thedata.getTimezoneOffset()/(24*60);
-    s = s + "<br><br>" + jd + "<br>" + thedata + "<br>";
-    return s;
+    let dd = new Date(1900,0,1);
+    let jd = (thedata - dd)/(24*3600*1000) + 2415020 + 0.5 + thedata.getTimezoneOffset()/(24*60);
+    
+    
+    //Расчет по формуле из Википедии
+    /*
+    let a= Math.floor((14 - (thedata.getMonth()+1) )/12);
+    let y = thedata.getFullYear() + 4800 - a;    
+    let m = thedata.getMonth()+1 + 12*a -3;
+    let JDN = thedata.getDate() + 
+       Math.floor((153.*m+2)/5) + 365*y +
+       Math.floor(y/4) - Math.floor(y/100) + Math.floor(y/400) - 32045;
+    console.log(JDN);
+
+    let JD = JDN + (thedata.getUTCHours()-12 + 
+    thedata.getUTCMinutes()/60 + 
+    thedata.getUTCSeconds()/3600 + 
+    thedata.getUTCMilliseconds()/(3600*1000) )/24;
+    console.log(JD);
+    */   
+        
+    return jd;
 }
 
 //-----------------------------------------------------------------------------------------------------------------

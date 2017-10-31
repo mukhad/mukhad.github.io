@@ -4,10 +4,11 @@ var pi = Math.PI;
 
 //===========================================================================
 //---------------------------------------------------------------------------
-void GorizontCoor(double hour, double del, double fi, double& a, double& A){
+function GorizontCoor(hour, dec, fi, a, A){
     //перевод из экваториальной СК в горизонтальную
     //hour - часовой угол (часы)
-    //del - дельта (град)
+    //dec - дельта (град)
+    //fi - coor RT (град)
     //а - высота (град) [-90;90]
     //A - азимут (град) [0;360]
  
@@ -15,13 +16,13 @@ void GorizontCoor(double hour, double del, double fi, double& a, double& A){
     //double fi = 49.6444; // широта УТР-2
     //double fi = (45 + 11.3482/60.); // широта РТ-70
  
-    del = del * pi / 180.; //rad
+    dec = dec * pi / 180.; //rad
     hour = hour * pi / 12.; //rad
     fi = fi * pi / 180.; //rad
  
     a = asin( sin(del)*sin(fi) + cos(del)*cos(hour)*cos(fi) );
     A = acos( (sin(del)*cos(fi) - cos(del)*cos(hour)*sin(fi))/cos(a) );
-    float tA = asin( -cos(del)*sin(hour)/cos(a) );
+    let tA = asin( -cos(del)*sin(hour)/cos(a) );
     if ( tA < 0 ) A = 2*pi - A;
  
     A = A * 180./pi;
