@@ -1,0 +1,99 @@
+
+<html>
+<head>
+<title>Астрономические утилиты</title>
+
+<script language="JavaScript" src="Star_my.js"></script>
+<script language="JavaScript" src="astroequations.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body bgcolor="#7B92AD" text="#000000" onload="showTime()">
+
+    <div>
+        Сегодня:  <b>
+        <script language="JavaScript">
+               document.write(getToday_Jday(new Date()));                    
+        </script></b>
+        <br>
+        Истинное звездное время на текущую дату в Гринвичскую полночь:<b> 
+        <script language="javascript">
+               document.write(getStarTime(new Date()));
+        </script>
+        </b>
+  </div>
+  
+
+                  <table width="100%" border="0" cellspacing="0" cellpadding="10">
+                    <tr> 
+                      <td class="my"> 
+                        
+                          <p align="center"> <span class="note">Универсальный 
+                            калькулятор звездного времени:</span> 
+                          <form name="loc_star">
+                          <table width="500" border="0" cellspacing="1" cellpadding="5" align="center">
+                            <tr> 
+                              <td align="center">Текущие данные для расчета:</td>
+                            </tr>
+                            <tr> 
+                              <td width="34%">Год-месяц-день= 
+                                <input type="text" size="8" name="timeLoc_ymd">
+                              </td>
+                            </tr>
+                            <tr> 
+                              <td width="34%">Час:минуты:секунды = 
+                                <input type="text" size="7" name="timeLoc_hms">
+                                местного времени</td>
+                            </tr>
+                            <tr> 
+                              <td>UT-местное время = 
+                                <input type="text" size="2" name="d_UT">
+                                часа </td>
+                            </tr>
+                            <tr> 
+                              <td>Географическая долгота места:&nbsp; 
+                                <input type="text" size="3" name="long_1">
+                                &nbsp;&#176&nbsp; 
+                                <input type="text" size="3" name="long_2">
+                                &nbsp;'&nbsp; 
+                                <input type="text" size="3" name="long_3">
+                                &nbsp;"</td>
+                            </tr>
+                            <tr> 
+                              <td> 
+                                <input type="checkbox" name="user_enter">
+                                Вводить Ваши входные данные? <br>
+                                (сам ввод производить выше , результат см. - ниже)</td>
+                            </tr>
+                            <tr> 
+                              <td>&nbsp;</td>
+                            </tr>
+                            <tr> 
+                              <td align="center"><span class="note">Расчетное 
+                                звездное время (истинное):</span> 
+                                <input type="text" size="15" name="timeStar">
+                              </td>
+                            </tr>
+                          </table>
+                        </form>
+                        <p><b><br>
+                          Ограничения калькулятора:</b> </p>
+                        <p>По умолчанию устанавливается: дата, местное время и 
+                          его поправка к UT - с Вашего компьютера; а вот географическая 
+                          долгота берется для г. Пущина (радиотелескоп РТ-22 в 
+                          ПРАО ФИАН). Вы можете вводить свои данные после нажатия 
+                          флажка ввода данных, но при его отжатии автоматически 
+                          восстанавливаются данные по умолчанию.</p>
+                        <p> Расчет можно вести лишь в пределах 1900-2100 гг. , 
+                        </p>
+                        <p>Точность расчетов не хуже, чем &#177; 0.0002 sec </p>
+                      </td>
+                    </tr>
+                    <tr> 
+                      <td align="right"><i>Алгоритмы расчетов получены от Субаева 
+                        И.А., www-программирование - Самодуров В.А.</i></td>
+                    </tr>
+                  </table>                
+</body>
+</html>

@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>Астрономические утилиты</title>
+
+<script language="JavaScript" src="count_az_.js"></script>
+<script language="JavaScript" src="astroequations.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body bgcolor=#7B92AD text="#000000" onLoad=count_az_h()>
+<div>
+      Сегодня:  <b>
+      <script language="JavaScript">
+             document.write(getToday_Jday(new Date()));                    
+      </script></b>
+      <br>
+      Истинное звездное время на текущую дату в Гринвичскую полночь:<b> 
+      <script language="javascript">
+             document.write(getStarTime(new Date()));
+      </script>
+      </b>
+</div>
+        
+<div class="my"> 
+  <p align="center"> 
+    <span class="note">Универсальный калькулятор  положения источников на небе:</span> <br>
+    Текущие данные для расчета:
+  </p>
+      <form name="AZ_H">                                 
+                                      
+      <div align = left>
+          Год-месяц-день= 
+               <input type="text" size="5" name="year">
+               <input type="text" size="3" name="month">
+               <input type="text" size="3" name="day"><br>
+          Час:минуты:секунды = 
+               <input type="text" size="8" name="timeLoc_hms"><br>
+          UT-местное время = 
+               <input type="text" size="2" name="d_UT">
+              часа <br>
+          Географическая долгота места: 
+               <input type="text" size="3" name="long_1" value="37">
+                &#176 
+               <input type="text" size="3" name="long_2" value="37">
+                ' 
+               <input type="text" size="3" name="long_3" value="48">
+                "<br>
+          Географическая широта места: 
+               <input type="text" size="3" name="lat_1" value="54">
+               &#176 
+               <input type="text" size="3" name="lat_2" value="49">
+               ' 
+               <input type="text" size="3" name="lat_3" value="14">
+               "<br>
+          
+          <p>Координаты источника на небе (1950.0):</p>
+          Прямое восхождение: 
+                <input type="text" size="3" name="a1" value="19">
+                h 
+                <input type="text" size="3" name="a2" value="21">
+                m 
+                <input type="text" size="3" name="a3" value="26">
+                s<br>
+          Склонение: 
+                <input type="text" size="3" name="d1" value="14">
+                &#176 
+                <input type="text" size="3" name="d2" value="24">
+                ' 
+                <input type="text" size="3" name="d3" value="21">
+                " </br>
+                      
+                <input type="checkbox" name="user_enter">
+                                Вводить Ваши входные данные для даты? (ввод см. 
+                                выше , результат - ниже)</br>
+                    
+          <p>Расчетный азимут (относительно 
+                                направления на юг) и высота источника:</p>
+          Азимут: 
+                <input type="text" size="3" name="az1">
+                &#176 
+                <input type="text" size="3" name="az2">
+                ' 
+                <input type="text" size="3" name="az3">
+                " </br>
+          Высота: 
+                <input type="text" size="3" name="h1">
+                &#176 
+                <input type="text" size="3" name="h2">
+                ' 
+                <input type="text" size="3" name="h3">
+                " <br>
+          Время кульминации источника: 
+                <input type="text" size="10" name="test">
+      </form>
+                        
+      <p><b>Ограничения калькулятора:</b><br>
+          По умолчанию устанавливается: дата, местное время и 
+          его поправка к UT - с Вашего компьютера. А вот географическая 
+          долгота и широта берется для г. Пущина (радиотелескоп 
+          РТ-22 в ПРАО ФИАН), Вам же надо вводить свои. Для даты 
+          Вы можете вводить свои данные лишь после нажатия флажка 
+          ввода данных, но при его отжатии автоматически восстанавливаются 
+          данные по умолчанию.<br>
+          По умолчанию задаются координаты в эпохе 1950.0, при 
+          вводе отрицательных склонений все данные для него (&#176 
+          , ', " ) необходимо снабдить минусами. Как начальные 
+          используются координаты источника W51M.<br>
+          Точность расчетов - порядка нескольких угловых секунд.<br>
+          <i>Алгоритмы - Рудницкий Г.М., www-программирование - Самодуров В.А.</i> </p>                 
+
+</body>
+</html>

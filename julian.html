@@ -1,0 +1,25 @@
+<html>
+		<head>
+		<title>Астрономические утилиты</title>
+		
+		<script language="JavaScript" src="astroequations.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		</head>
+		
+	<body bgcolor=#7B92AD text="#000000" onLoad=count_az_h()>
+		<div>
+			  Сегодня:  <b>
+			  <script language="JavaScript">
+					 document.write(getToday_Jday(new Date()));                    
+			  </script></b>
+			  <br>
+			  Истинное звездное время на текущую дату в Гринвичскую полночь:<b> 
+			  <script language="javascript">
+					 document.write(getStarTime(new Date()));
+			  </script>
+			  </b>
+		</div>
+		
+			   
+    </body>
+</html>
