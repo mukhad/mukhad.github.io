@@ -1,12 +1,24 @@
 //-----------------------------------------------------------------------------------------------------------------
 //Mukhad    30.10.17
 //-----------------------------------------------------------------------------------------------------------------
-function getJDay(thedata){
+function Hour2hms(val){
+     let h = Math.floor(val);
+     let m = Math.floor((val - h)*60);
+     let s = (val - h - m/60)*3600;
+     
+     return h + " h " + m + " m " + s.toFixed(3) +" s ";
+}
+//-----------------------------------------------------------------------------------------------------------------
+function getJDay(thedata,hour_angle){
+    //hour_angle - часовой угол (час) со знаком "-" для восточного полушария
+    if(hour_angle == undefined)
+            hour_angle = thedata.getTimezoneOffset()/60;    
+    //console.log("h = ", hour_angle);
+    
     let dd = new Date(1900,0,1);
-    let jd = (thedata - dd)/(24*3600*1000) + 2415020 + 0.5 + thedata.getTimezoneOffset()/(24*60);
-    
-    
-    //Расчет по формуле из Википедии
+    let jd = (thedata - dd)/(24*3600*1000) + 2415020 + 0.5 + hour_angle/24;
+        
+    //Расчет по формуле из Википедии 
     /*
     let a= Math.floor((14 - (thedata.getMonth()+1) )/12);
     let y = thedata.getFullYear() + 4800 - a;    
@@ -20,12 +32,59 @@ function getJDay(thedata){
     thedata.getUTCMinutes()/60 + 
     thedata.getUTCSeconds()/3600 + 
     thedata.getUTCMilliseconds()/(3600*1000) )/24;
-    console.log(JD);
-    */   
-        
+    
+    console.log("1) jd:" + jd);        
+    console.log("2) JD:" + JD);
+    console.log("JD - jd:" + (JD-jd));
+    */
+            
     return jd;
 }
+//-----------------------------------------------------------------------------------------------------------------
+function getLMST(thedata, hour_angle, longitude){
+    //get Local Mean Siderial Time
+    
+    //hour_angle - часовой угол (час) со знаком "-" для восточного полушария    
+    if(hour_angle == undefined)
+        hour_angle = thedata.getTimezoneOffset()/60;
+    
+    //double longitude = 36.85;   //долгота УТР-2 36.85
+    //double longitude = (33 + 11.2205/60.);   //долгота РТ-70
+    if(longitude == undefined)
+        longitude = (33 + 11.2205/60.);
+    
+    longitude = longitude * 24./360.;
 
+    let jd = getJDay(thedata);
+    let nowtime = thedata.getHours() + thedata.getMinutes()/60 + 
+                    (thedata.getSeconds()+ 0.001*thedata.getMilliseconds())/3600;
+    
+    //расчет по 1950 Jan 1, 12h UT1
+    let Tu_50 = (jd - 2415020  )*1./36525;
+    let GMST0_50 = 6 + 38./60 + 45.836/3600 + 8640184.542*Tu_50/3600 + 0.0929*Tu_50*Tu_50/3600;
+    
+ 
+    //from Lang - Astrophysical formulae
+    let Tu = (jd - 2451545.0)*1./36525;
+        //2451545.0 == 2000 Jan 1, 12h UT1
+    let GMST0 = 24110.54841 + 8640184.812866*Tu + 0.093104*Tu*Tu - 0.0000062*Tu*Tu*Tu;
+       // 24110.54841 == 6h 41m 50.54841s 
+    
+    while (GMST0 <= 0) {GMST0 = GMST0 + 86400.0};  ///из алгоритмов Самодурова
+    while (GMST0 > 86400) {GMST0 = GMST0 - 86400.0};  
+    GMST0 = GMST0 / 3600;
+
+    //let delta = (GMST0%24 - GMST0_50%24)*3600;
+    //console.log("GMST0 - GMST0_50 [sec]: " + delta);    
+
+    //let LMST0 = GMST0_50 + longitude;    
+    let LMST0 = GMST0 + longitude;
+ 
+    let LMST = LMST0 + nowtime + hour_angle;    
+    
+    LMST = LMST - 24*Math.floor(LMST/24);
+    return LMST;
+}
 //-----------------------------------------------------------------------------------------------------------------
 function getToday_Jday(thedata){
     //thedata = new Date();
