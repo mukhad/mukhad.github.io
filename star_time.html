@@ -3,15 +3,67 @@
 <head>
 <title>Астрономические утилиты</title>
 
+<link rel="stylesheet" type="text/css" href="styles.css">	
+
 <script language="JavaScript" src="Star_my.js"></script>
 <script language="JavaScript" src="astroequations.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 
-<body bgcolor="#7B92AD" text="#000000" onload="showTime()">
+<body onload="showTime()">
+  
+  <div id="menu">
+        <ul id="nav">
+          <li>
+          <a href="#" title="Вернуться на главную страницу">Главная</a>
+          </li>
+          <li>
+            <a href="#" title="О погоде">Погода</a>
+            <ul>
+              <li><a href="#">Евпатория</a></li>
+              <li><a href="#">Симферополь</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" title="Астро">Астрономия</a>	        
+            <ul>
+              <li> <a href="julian.html">JDays</a></li> 
+              <li><a href="star_time.html">Star time</a></li>
+            </ul>
+            
+          </li>
+          <li>
+            <a href="#" title="Ссылки">Ссылки</a>
+            <ul>
+              <li> <a href="http://rian.kharkov.ua/">РИНАНУ</a></li> 
+              <li><a href="http://ri.kharkov.ua/decameter">Отдел Декаметровой Радиоастрономии</a></li>
+              <li> <a href="http://astronet.ru/" target="_blank"> Российская Aстрономическая Сеть</a></li>
+              <li><a href="http://hubblesite.org/" target="_blank">Cайт телескопа Хаббл</a></li>
+              <li><a href="http://elementy.ru/" target="_blank">Элементы: сайт о фундаментальной науке</a></li>
+              <li><a href="http://habrahabr.ru/" target="_blank"> habrahabr </a></li>
+              <li><a href="http://www.vla.nrao.edu/astro/calib/polar/calsources.shtml" target="_blank">VLA/VLBA Polarization Calibration Database</a></li>
+              <li><a href="http://simbad.u-strasbg.fr/simbad/sim-fid" target="_blank">Centre de Donnees astronomiques de Strasbourg / Simbad </a></li>
+              <li><a href="http://www.physics.purdue.edu/MOJAVE/allsources.html" target="_blank">MOJAVE/2cm Survey Data Archive</a></li>
+              <li><a href="https://science.nrao.edu/facilities/vla/observing/callist" target="_blank">NRAO List of Calibrators</a></li>
+              <li><a href="http://ssd.jpl.nasa.gov/" target="_blank">JPL Solar System Dynamics</a></li>
+              <li><a href="http://www.n2yo.com/satellite/?s=37755" target="_blank">Орбита Радиоастрона</a></li>
+              <li><a href="http://www.swpc.noaa.gov/today.html" target="_blank"> Today's Space Weather </a></li>
+              <li><a href="http://www.tesis.lebedev.ru/magnetic_storms.html" target="_blank">Магнитные Бури он-лайн </a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" title="Контакты">Контакты</a>
+            <ul>
+              <li><a href="#">Часы работы</a></li>
+              <li><a href="#">Местоположение</a></li>
+            </ul>
+          </li>
+        </ul>
+  </div>
+      
 
-    <div>
+  <div id="main">     
         Сегодня:  <b>
         <script language="JavaScript">
                document.write(getToday_Jday(new Date()));                    

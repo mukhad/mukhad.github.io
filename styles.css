@@ -113,3 +113,12 @@ ul#nav li.iehover ul,
 ul#nav ul li.iehover ul {
         display: block;
 } 
+
+.menu{
+        width: 90%;
+        
+    }
+.main{
+        width: 90%;
+}
+    

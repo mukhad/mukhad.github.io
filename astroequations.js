@@ -305,6 +305,10 @@ ps = ps+   0.00010            * Math.sin (2.0*(l+d));
 ps = ps-   0.00010            * Math.sin (2.0*q+4.0*d+2.0*f);
 ps = ps+   0.00010            * Math.sin (d+m);
 
+console.log(ps);
+console.log(pl);
+
+
 var s0 = sm+(pl+ps)/15.0* Math.cos (e);
 
 var s_hour_=Math.floor(s0/3600);
