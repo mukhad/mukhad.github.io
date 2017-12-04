@@ -2,12 +2,21 @@
 <head>
 <title>Астрономические утилиты</title>
 
+<link rel="stylesheet" type="text/css" href="styles.css">	
+
 <script language="JavaScript" src="count_az_.js"></script>
 <script language="JavaScript" src="astroequations.js"></script>
+<script language="JavaScript" src="generateMenu.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 
-<body bgcolor=#7B92AD text="#000000" onLoad=count_az_h()>
+<body onLoad=count_az_h()>
+
+<div id="menu">
+      <script language="javascript"> generateMenu("menu") </script>
+</div>
+
 <div>
       Сегодня:  <b>
       <script language="JavaScript">

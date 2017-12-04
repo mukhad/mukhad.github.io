@@ -1,6 +1,8 @@
 //-----------------------------------------------------------------------------------------------------------------
 //Mukhad    30.10.17
 //-----------------------------------------------------------------------------------------------------------------
+var logout = 1;
+//-----------------------------------------------------------------------------------------------------------------
 function Hour2hms(val){
      let h = Math.floor(val);
      let m = Math.floor((val - h)*60);
@@ -135,17 +137,16 @@ function getToday_Jday(thedata){
 }
 //-----------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------
-
-function getStarTime(dothis){
+function getStarTimeInSeconds(dothis){
     
 //dothis = new Date();
     im = 1+dothis.getMonth();
     iday = dothis.getDate();
     iyear = dothis.getFullYear();
-    var r = 1296000.0;    //=360*3600
+    let r = 1296000.0;    //=360*3600
     month = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
-    var i;    //integer
-    var t,sm,p,e,q,d,f,m,l,pl,ps,s0,ihs,ims,sec;    // real;
+    let i;    //integer
+    let t,sm,p,e,q,d,f,m,l,pl,ps,s0,ihs,ims,sec;    // real;
 //{*--------------------------------------------------------------------*
 //*                        Calculate iday and t                        *
 //*--------------------------------------------------------------------*}
@@ -165,9 +166,6 @@ for (i=1; i<=im-1; i++)  {iday += month[i-1]};
 var iy = iyear - 1900;
 //--- iday = (iday-1)+(iy-1) div 4;
 iday = Math.floor((iday-1)+(iy-1)/4);
-
-//document.loc_star.test.value=iy+','+iday+"; "+l_hour+":"+l_min+":"+l_sec;
-
 
 //--t := Longint(iday) + Longint(iy)*365.0;
 t=iday + iy*365.0;
@@ -305,16 +303,36 @@ ps = ps+   0.00010            * Math.sin (2.0*(l+d));
 ps = ps-   0.00010            * Math.sin (2.0*q+4.0*d+2.0*f);
 ps = ps+   0.00010            * Math.sin (d+m);
 
-console.log(ps);
-console.log(pl);
+//{*--------------------------------------------------------------------*
+//*                    Calculate true sidereal time                    *
+//*--------------------------------------------------------------------*}
+    s0 = sm+(pl+ps)/15.0* Math.cos (e);
 
+    
+    if(logout){
+        console.log("ae->time: " + dothis);
+        console.log("ae->mean sidereal time: " + sm);
+        console.log("ae->long  periodic nutation: " + pl);
+        console.log("ae->short periodic nutation: " + ps);
+        console.log("ae->add: " + (pl+ps)/15.0* Math.cos(e) ) ;
+        console.log("ae->time: " + s0);
+        logout = 0;        
+    }
 
-var s0 = sm+(pl+ps)/15.0* Math.cos (e);
+    return s0;
+}
+//-----------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------
+function getStarTime(dothis){
+    
+    let s0 = getStarTimeInSeconds(dothis);    
 
-var s_hour_=Math.floor(s0/3600);
-var s_min_=Math.floor((s0-s_hour_*3600)/60);
-var s_sec_=Math.floor((s0-s_hour_*3600-s_min_*60)*10000)/10000;
+    let s_hour_=Math.floor(s0/3600);
+    let s_min_=Math.floor((s0-s_hour_*3600)/60);
+    let s_sec_=Math.floor((s0-s_hour_*3600-s_min_*60)*10000)/10000;
 
-let s = s_hour_ + " h " + s_min_ + " m " + s_sec_ +" s ";
-return s;
-};
+    let s = s_hour_ + " h " + s_min_ + " m " + s_sec_ +" s ";
+    return s;
+}
+//-----------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------
