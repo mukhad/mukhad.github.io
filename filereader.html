@@ -1,0 +1,97 @@
+<html>
+    <head>
+    <title>Астрономические утилиты</title>
+
+    <link rel="stylesheet" type="text/css" href="styles.css">				
+    
+    <script language="JavaScript" src="generateMenu.js"></script>
+    <script language="JavaScript" src="filereader.js"></script>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </head>
+    
+<body>
+    <div id="menu">
+            <script language="javascript"> generateMenu("menu") </script>
+    </div>
+    <p>
+        <script type="text/javascript">
+        if(!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+          document.write('<font color="red">Ваш браузер не поддерживает file API.</font>');
+        } else {
+          document.write('<font color="green">Ваш браузер поддерживает file API.</font>');
+        }
+        </script>
+    </p>
+    
+    <div id = "main">
+        <h2>Пример 1:</h2>
+        <div>
+            <input type="file" id="file">
+            <button onclick="readFile(document.getElementById('file'))">Read!</button>
+            <button onclick="document.getElementById('out').innerHTML=''">Clear!</button>
+                     
+            <div id="out"></div>
+        </div>
+
+        <h2>Пример 2:</h2>
+        <div>
+            <p>методы асинхронного чтения файлов с помощью объекта  FileReader </p>
+                <ul>
+                        <li><code>FileReader.readAsBinaryString(Blob|File)</code>&nbsp;– строка бинарного кода. Каждый байт представлен целым числом от 0 до 255.</li>
+                        <li><code>FileReader.readAsText(Blob|File, opt_encoding)</code>&nbsp;– текстовая строка, по умолчанию UTF-8.</li>
+                        <li><code>FileReader.readAsDataURL(Blob|File)</code>&nbsp;–  схема <code>data:URL</code>.</li>
+                        <li><code>FileReader.readAsArrayBuffer(Blob|File)</code>&nbsp;– объект <code>ArrayBuffer</code>.</li>
+                </ul>
+
+
+                <input type="file" id="files" name="files[]" multiple />
+                <output id="list"></output>
+                
+            <script>
+                  function handleFileSelect(evt) {
+                    var files = evt.target.files; // FileList object
+                
+                    // files is a FileList of File objects. List some properties.
+                    var output = [];
+                    for (var i = 0, f; f = files[i]; i++) {
+                      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                                  f.size, ' bytes, last modified: ',
+                                  f.lastModifiedDate.toLocaleDateString(), '</li>');                                  
+                    }
+                    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+                  }
+
+            // Loop through the FileList and render image files as thumbnails.
+            for (var i = 0, f; f = files[i]; i++) {
+      
+                // Only process image files.   if (!f.type.match('image.*')) {  continue;  }
+      
+                var reader = new FileReader();
+      
+                // Closure to capture the file information.
+                reader.onload = (function(theFile) {
+                    return function(e) {
+                        // Render thumbnail.
+                        var span = document.createElement('span');
+                        span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                                  '" title="', escape(theFile.name), '"/>'].join('');
+                        document.getElementById('list').insertBefore(span, null);
+                    };
+                })(f);
+      
+                // Read in the image file as a data URL.
+                reader.readAsDataURL(f);
+            }
+                
+            document.getElementById('files').addEventListener('change', handleFileSelect, false);
+            </script>
+        
+        </div>
+            
+    </div>
+
+    
+           
+</body>
+</html>

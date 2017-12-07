@@ -1,6 +1,6 @@
 /* CSS Document */
 ul#nav {
-        width:550px;
+        width:80%;
         margin: 0;
         border: 0 none;
         padding: 0;
@@ -8,7 +8,7 @@ ul#nav {
         background: #19baeb;
         height: 30px;
         font: bold 12px/28px Verdana, Arial;
-        border-left:#19baeb 1px solid;
+        border-left:#19baeb 1px solid;        
 }
 
 ul#nav li {
@@ -82,9 +82,11 @@ ul#nav li.iehover li a {
         float: none;
         background: #19baee;
         color: #FFFFFF;
+        text-align: left;
 }
 
 /* Second Menu Hover */
+
 ul#nav li:hover li a:hover,
 ul#nav li:hover li:hover a,
 ul#nav li.iehover li a:hover,
@@ -114,11 +116,30 @@ ul#nav ul li.iehover ul {
         display: block;
 } 
 
-.menu{
-        width: 90%;
-        
-    }
-.main{
-        width: 90%;
+#nav{
+        text-align: center;
 }
+
+body{
+        background: #c5f5f5;               
+}
+
+#main{
+      width: 80%;
+      margin: 0;        
+      padding: 0;
+      border: 0 none;      
+      background: #c5f5f5;
+}
+#left, 
+#right {
+        width: 40%;
+        float: left;        
+}
+
+#footer{
+        width: 80%;   
+        clear: left;
+}
+
     
