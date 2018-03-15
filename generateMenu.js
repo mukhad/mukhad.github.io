@@ -3,7 +3,7 @@ function generateMenu(divID){
     document.getElementById(divID).insertAdjacentHTML('afterbegin',  
     '<ul id="nav"> ' + 
     '<li> <a href="index.html" title="Вернуться на главную страницу">Главная</a></li>' +
-    '<li> <a href="bs_index.html" title="Bootstrap site">BS site</a></li>' +
+    '<li> <a href="bs/index.html" title="Bootstrap site">BS site</a></li>' +
     '<li> <a href="#" title="О погоде">Погода</a> ' +
         '<ul><li><a href="#">Евпатория</a></li>'+
             '<li><a href="#">Симферополь</a></li></ul>'+
