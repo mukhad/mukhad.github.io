@@ -1,3 +1,6 @@
+h3{
+    color: #3AC1EF;
+}
 .navbar{
     background:#002ef9;
 }
@@ -7,12 +10,17 @@
     cursor: pointer;
 }
 
+.navbar-brand:hover{
+    color: #ffffff;
+    font-weight: bold;
+}
+
 .nav-link{
     margin-right: 1em !important;
 }
 
 .nav-link:hover{
-    background: #f4f4f4;
+    background: #8fe9ff;
     color: #002ef9;
 }
 
@@ -34,7 +42,7 @@
 
 /*header style*/
 .header{
-    background-image: url('headerback_bg.jpg');
+    background-image: url('headerback_sm.jpg');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -71,6 +79,8 @@
  color:#fff;
 }
 
+/*About*/
+
 .about{
     margin: 4em 0;
     padding: 1em;
@@ -101,4 +111,20 @@
    .about .desc p{
     line-height:2;
     color:#888;
+   }
+
+
+   /*Portfolio*/
+.portfolio{
+    margin: 4em 0;
+       position: relative; 
+   }
+   .portfolio h1{
+    color:#F97300;
+    margin: 2em; 
+   }
+   .portfolio img{
+     height: 15rem;
+     width: 100%;
+     margin: 1em;
    }
